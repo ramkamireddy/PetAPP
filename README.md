@@ -1,50 +1,65 @@
-# Welcome to your Expo app 👋
+This React Native App called `PetAPP` that initially displays a splash screen for 3 seconds before showing the main content of the app, which is represented by the `PetDetails` component. Here is a summary of My app:
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+1. **Imports**:
+   - React Native components: `View`, `Text`, `SafeAreaView`, `StatusBar`, `Image`, `Platform`.
+   - React hooks: `useEffect`, `useState`.
+   - Custom component: `PetDetails`.
 
-## Get started
+2. **State Management**:
+   - Uses `useState` to manage the visibility of the splash screen (`splash` state).
 
-1. Install dependencies
+3. **Effect Hook**:
+   - Uses `useEffect` to set a timer that hides the splash screen after 3 seconds. The timer is cleared if the component unmounts to prevent memory leaks.
 
-   ```bash
-   npm install
-   ```
+4. **Rendering Logic**:
+   - Renders a `SafeAreaView` that adjusts its padding for Android's status bar.
+   - While `splash` is true, displays a splash screen with a puppy image.
+   - Once `splash` is false, renders the `PetDetails` component.
 
-2. Start the app
+5. **Styling**:
+   - Conditional styling for background color and padding based on the `splash` state and platform.
 
-   ```bash
-    npx expo start
-   ```
+6. **Export**:
+   - Exports the `NewApp` component as the default export of the module.
 
-In the output, you'll find options to open the app in a
+This component ensures a smooth transition from a splash screen to the main content after a set duration.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-## Get a fresh project
 
-When you're ready, run:
+And the main component PetDetails is used for users to view details about different dog breeds. Here's a summary of the PetDetails component and functionality:
 
-```bash
-npm run reset-project
-```
+### Overview
+- **Imports**: The necessary React and React Native components and hooks (`useEffect`, `useState`) are imported.
+- **Component**: The main component `App` is defined as a functional component.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### State Variables
+- `isOpen`: Manages whether the dropdown menu is open or closed.
+- `selectedValue`: Stores the name of the selected dog breed.
+- `selectedData`: Stores the data of the selected dog breed.
+- `data`: Holds the list of dog breeds fetched from an API.
+- `petDetails`: Holds detailed information about the selected dog breed fetched from another API.
 
-## Learn more
+### Functions
+- `handleOptionPress(value, option)`: Handles selection of a dog breed from the dropdown, updates the state, and fetches detailed information about the selected breed.
+- `useEffect`: Calls `fetchData` to fetch the list of dog breeds when the component mounts.
+- `fetchData()`: Fetches the list of dog breeds from an external API and updates the `data` state.
+- `petDetailApi(name)`: Fetches detailed information about a specific dog breed using its name and updates the `petDetails` state.
 
-To learn more about developing your project with Expo, look at the following resources:
+### JSX Layout
+- The main view (`View`) contains:
+  - An `ImageBackground` component for the background image.
+  - A `Text` component displaying "Pet Details".
+  - A `TouchableOpacity` component acting as a button to toggle the dropdown menu.
+  - A `ScrollView` component displaying the list of dog breeds when the dropdown is open.
+  - Detailed information about the selected breed displayed when the dropdown is closed and a breed is selected.
+  - An `Image` component displaying an image of the selected breed.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### Styles
+- The `StyleSheet` defines styles for various components, such as the container, background image, text, buttons, and dropdown options.
 
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### Key Interactions
+1. **Fetch Data**: When the app loads, it fetches a list of dog breeds from an API.
+2. **Select Breed**: The user can open a dropdown to select a dog breed.
+3. **Fetch Details**: Upon selection, detailed information about the breed is fetched from another API.
+4. **Display Details**: The selected breed's details, including an image, are displayed on the screen.
